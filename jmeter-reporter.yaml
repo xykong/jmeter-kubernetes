@@ -20,6 +20,11 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8686
+      tolerations:
+        - key: "type"
+          operator: "Equal"
+          value: "jmeter"
+          effect: NoExecute
 
 ---
 apiVersion: v1

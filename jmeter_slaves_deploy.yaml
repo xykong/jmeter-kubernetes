@@ -21,3 +21,8 @@ spec:
         ports:
         - containerPort: 1099
         - containerPort: 50000
+      tolerations:
+        - key: "type"
+          operator: "Equal"
+          value: "jmeter"
+          effect: NoExecute

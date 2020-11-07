@@ -30,3 +30,8 @@ spec:
       - name: loadtest 
         configMap:
          name: jmeter-load-test
+      tolerations:
+        - key: "type"
+          operator: "Equal"
+          value: "jmeter"
+          effect: NoExecute

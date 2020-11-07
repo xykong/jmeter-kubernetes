@@ -32,3 +32,8 @@ spec:
       - name: config-volume
         configMap:
          name: influxdb-config
+      tolerations:
+        - key: "type"
+          operator: "Equal"
+          value: "jmeter"
+          effect: NoExecute
