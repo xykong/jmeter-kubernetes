@@ -25,18 +25,3 @@ spec:
           operator: "Equal"
           value: "jmeter"
           effect: NoExecute
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jmeter-reporter
-  labels:
-    jmeter_mode: reporter
-spec:
-  ports:
-    - port: 8686
-      targetPort: 8686
-  selector:
-    jmeter_mode: reporter
-  type: NodePort
