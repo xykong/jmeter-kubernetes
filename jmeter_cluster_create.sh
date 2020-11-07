@@ -64,7 +64,7 @@ echo "Number of worker nodes on this cluster is " $nodes
 
 echo
 
-#echo "Creating $nodes Jmeter slave replicas and service"
+echo "Creating Jmeter slave replicas and service"
 
 echo
 
@@ -77,7 +77,6 @@ echo "Creating Jmeter Master"
 kubectl create -n $tenant -f $working_dir/jmeter_master_configmap.yaml
 
 kubectl create -n $tenant -f $working_dir/jmeter_master_deploy.yaml
-
 
 echo "Creating Influxdb and the service"
 
@@ -92,6 +91,12 @@ echo "Creating Grafana Deployment"
 kubectl create -n $tenant -f $working_dir/jmeter_grafana_deploy.yaml
 
 kubectl create -n $tenant -f $working_dir/jmeter_grafana_svc.yaml
+
+echo "Creating Reporter Deployment"
+
+kubectl create -n $tenant -f $working_dir/jmeter_reporter_deploy.yaml
+
+kubectl create -n $tenant -f $working_dir/jmeter_reporter_svc.yaml
 
 echo "Printout Of the $tenant Objects"
 
