@@ -15,29 +15,33 @@ fi
 
 kubectl version --short
 
-echo "Current list of namespaces on the kubernetes cluster:"
+if [ "$1" != "" ]; then
+  tenant=$1
+else
+  echo "Current list of namespaces on the kubernetes cluster:"
 
-echo
+  echo
 
-kubectl get namespaces | grep -v NAME | awk '{print $1}'
+  kubectl get namespaces | grep -v NAME | awk '{print $1}'
 
-echo
+  echo
 
-echo "Enter the name of the existing tenant unique name, this will be used to delete the namespace"
-read tenant
-echo
+  echo "Enter the name of the new tenant unique name, this will be used to create the namespace"
+  read tenant
+  echo
+fi
 
 #Check If namespace exists
 
 kubectl get namespace $tenant > /dev/null 2>&1
 
-if [ $? !-eq 0 ]
+if [ $? -ne 0 ]
 then
-  echo "Namespace $tenant exist, this namespace will be deleted "
+  echo "Namespace $tenant not exist"
   echo "Current list of namespaces on the kubernetes cluster"
   sleep 2
 
-#  kubectl get namespaces | grep -v NAME | awk '{print $1}'
+  kubectl get namespaces | grep -v NAME | awk '{print $1}'
   exit 1
 fi
 
