@@ -1,6 +1,14 @@
 #!/bin/bash -e
 
-docker build --tag="kubernautslabs/jmeter-base:latest" -f Dockerfile-base .
-docker build --tag="kubernautslabs/jmeter-master:latest" -f Dockerfile-master .
-docker build --tag="kubernautslabs/jmeter-slave:latest" -f Dockerfile-slave .
-docker build --tag="kubernautslabs/jmeter-reporter" -f Dockerfile-reporter .
+tag="kubernautslabs"
+
+if [ "$1" != "" ]; then
+    tag=$1
+fi
+
+echo "build image on base tag name: $tag"
+
+docker build --tag="$tag/jmeter-base:latest" -f Dockerfile-base .
+docker build --tag="$tag/jmeter-master:latest" -f Dockerfile-master .
+docker build --tag="$tag/jmeter-slave:latest" -f Dockerfile-slave .
+docker build --tag="$tag/jmeter-reporter" -f Dockerfile-reporter .
