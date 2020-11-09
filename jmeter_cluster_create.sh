@@ -98,6 +98,8 @@ kubectl create -n $tenant -f $working_dir/jmeter_reporter_deploy.yaml
 
 kubectl create -n $tenant -f $working_dir/jmeter_reporter_svc.yaml
 
+echo
+
 echo "Printout Of the $tenant Objects"
 
 echo
@@ -105,3 +107,22 @@ echo
 kubectl get -n $tenant all
 
 echo namespace = $tenant > $working_dir/tenant_export
+
+echo
+
+./dashboard.sh
+
+echo
+echo
+
+echo "Waiting 10s for EXTERNAL-IP..."
+
+sleep 10
+
+kubectl -n $tenant get svc
+
+echo
+
+echo "Now you can import dashboard template in grafana from GrafanaJMeterTemplate.json manually."
+
+echo "Done!"
