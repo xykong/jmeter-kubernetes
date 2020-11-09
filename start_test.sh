@@ -6,7 +6,13 @@
 working_dir="`pwd`"
 
 #Get namesapce variable
-tenant=`awk '{print $NF}' "$working_dir/tenant_export"`
+tenant=`awk '{print $NF}' "$working_dir/tenant_export" 2>/dev/null`
+
+if [ ! -n "$tenant" ];
+then
+	read -p "Enter the name of the pod namespace, this will be used to run the test: " tenant
+	echo namespace = $tenant > "$working_dir/tenant_export"
+fi
 
 jmx="$1"
 [ -n "$jmx" ] || read -p 'Enter path to the jmx file ' jmx
