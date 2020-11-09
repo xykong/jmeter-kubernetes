@@ -28,4 +28,10 @@ kubectl cp "$jmx" -n $tenant "$master_pod:/$test_name"
 
 ## Echo Starting Jmeter load test
 
-kubectl exec -ti -n $tenant $master_pod -- /bin/bash /load_test "$test_name"
+test_report="$test_name $(date '+%Y-%m-%d %H:%M:%S')"
+
+kubectl exec -ti -n $tenant $master_pod -- mkdir -p "/tmp/reports/${test_report}"
+kubectl exec -ti -n $tenant $master_pod -- /bin/bash /load_test "$test_name" -l "/tmp/reports/${test_report}/result.jtl" -e -o "/tmp/reports/${test_report}/web"
+
+mkdir -p "./reports/${test_report}" && cd "./reports/${test_report}"
+kubectl cp -n $tenant "$master_pod:tmp/reports/${test_report}" .
