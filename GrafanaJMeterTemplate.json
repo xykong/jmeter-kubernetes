@@ -77,6 +77,17 @@
       "tooltip": "",
       "type": "dashboards",
       "url": ""
+    },
+    {
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Reporter",
+      "tooltip": "Open Reporter",
+      "type": "link",
+      "url": "http://jmeter-reporter-lb:8686/api/v5/report/ltaas"
     }
   ],
   "panels": [
