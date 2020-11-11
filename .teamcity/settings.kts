@@ -48,5 +48,7 @@ object StartTest : BuildType({
 
     vcs {
         root(DslContext.settingsRoot)
+
+        checkoutDir = "%system.teamcity.buildType.id%"
     }
 })
