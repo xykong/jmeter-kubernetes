@@ -43,6 +43,8 @@ project {
 object StartTest : BuildType({
     name = "Start Test"
 
+    maxRunningBuilds = 1
+
     params {
         text("TestPlan", "", label = "TestPlan", description = "paste jmx file content here", allowEmpty = true)
     }
