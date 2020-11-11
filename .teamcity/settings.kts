@@ -1,4 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.githubConnection
 
 /*
@@ -50,5 +51,15 @@ object StartTest : BuildType({
         root(DslContext.settingsRoot)
 
         checkoutDir = "%system.teamcity.buildType.id%"
+    }
+
+    steps {
+        script {
+            name = "build"
+            scriptContent = """
+                pwd
+                export
+            """.trimIndent()
+        }
     }
 })
