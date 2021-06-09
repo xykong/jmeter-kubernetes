@@ -17,7 +17,7 @@ reload : delete create
 # debug :
 # 	sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 # 	apt-get update
-# 	apt-get install -y procps
+# 	apt-get install -y procps net-tools
 
 
 kill-slaves :
